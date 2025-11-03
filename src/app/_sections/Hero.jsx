@@ -38,16 +38,17 @@ export default function Hero() {
                     invest time only when the spark is real.
                 </p>
 
-                <div className="mt-10 flex items-center justify-center gap-4">
+                <div className="mt-10 flex items-center justify-center gap-4 w-full max-w-md mx-auto">
                     <a
                         href="#final"
-                        className="btn-shine btn-magnetic inline-block rounded-full bg-gradient-to-r from-fuchsia-600 to-indigo-600 px-8 py-3 text-lg font-medium text-white shadow-[0_0_30px_rgba(240,0,184,0.25)] hover:shadow-[0_0_45px_rgba(240,0,184,0.4)]"
+                        className="btn-shine btn-magnetic inline-block rounded-full bg-gradient-to-r from-fuchsia-600 to-indigo-600 px-8 py-3 text-lg font-medium text-white shadow-[0_0_30px_rgba(240,0,184,0.25)] hover:shadow-[0_0_45px_rgba(240,0,184,0.4)] flex-1 text-center"
                     >
                         Start now
                     </a>
+
                     <a
                         href="#how"
-                        className="rounded-full border border-white/20 px-8 py-3 text-lg font-medium text-white hover:bg-white/10 transition"
+                        className="rounded-full border border-white/20 px-8 py-3 text-lg font-medium text-white hover:bg-white/10 transition flex-1 text-center"
                     >
                         See how it works
                     </a>
@@ -62,7 +63,7 @@ export default function Hero() {
                 <DashboardPreview />
             </div>
 
- {/*            <div
+            {/*            <div
                 id="phones"
                 ref={previewRef}
                 className="relative mx-auto mt-20 flex justify-center items-center gap-8 sm:gap-12 transition-transform duration-500"
