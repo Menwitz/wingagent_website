@@ -1,5 +1,19 @@
 "use client";
 
+async function handleCheckout(plan) {
+  try {
+    const res = await fetch("/api/stripe/checkout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ plan }),
+    });
+    const data = await res.json();
+    if (data.url) window.location.href = data.url;
+  } catch (e) {
+    console.error("Checkout failed", e);
+  }
+}
+
 export default function PricingCard({ data = {}, yearly = false }) {
   const { name = "", price = 0, features = [], highlight = false } = data;
   const displayPrice = yearly ? (price * 12 * 0.8).toFixed(0) : price.toFixed(2);
@@ -48,8 +62,8 @@ export default function PricingCard({ data = {}, yearly = false }) {
           </ul>
         </div>
 
-        <a
-          href="#"
+        <button
+          onClick={() => handleCheckout("starter")}
           className={`mt-8 text-center rounded-full py-3 font-medium transition-all ${
             highlight
               ? "bg-gradient-to-r from-fuchsia-600 to-indigo-600 text-white shadow-[0_0_25px_rgba(240,0,184,0.3)]"
@@ -57,7 +71,7 @@ export default function PricingCard({ data = {}, yearly = false }) {
           }`}
         >
           Get Started
-        </a>
+        </button>
       </div>
     </div>
   );
