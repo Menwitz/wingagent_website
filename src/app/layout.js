@@ -1,5 +1,6 @@
 import "./globals.css";
 import SmoothScroll from "./_components/SmoothScroll";
+import { Analytics } from "@vercel/analytics/next"
 
 <script
   type="application/ld+json"
