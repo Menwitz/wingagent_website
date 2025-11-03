@@ -1,72 +1,47 @@
-import Stripe from "stripe";
-import { headers } from "next/headers";
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 /**
- * POST /api/stripe/webhook
- * Handles subscription and payment events from Stripe.
+ * Stripe webhook handler (build-safe)
  */
 export async function POST(req) {
-  const body = await req.text();
-  const sig = headers().get("stripe-signature");
+  // Lazy import; nothing executes at build time
+  const { default: Stripe } = await import("stripe");
 
-  let event;
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!key) {
+    console.error("❌ STRIPE_SECRET_KEY missing in environment");
+    return new Response("Server misconfigured", { status: 500 });
+  }
+
+  const stripe = new Stripe(key, { apiVersion: "2024-06-20" });
+  const body = await req.text();
+  const sig = req.headers.get("stripe-signature");
 
   try {
-    event = stripe.webhooks.constructEvent(
+    const event = stripe.webhooks.constructEvent(
       body,
       sig,
       process.env.STRIPE_WEBHOOK_SECRET
     );
+
+    switch (event.type) {
+      case "checkout.session.completed":
+        console.log("✅ Checkout completed:", event.data.object.id);
+        break;
+      case "customer.subscription.updated":
+        console.log("🔁 Subscription updated:", event.data.object.id);
+        break;
+      case "customer.subscription.deleted":
+        console.log("❌ Subscription canceled:", event.data.object.id);
+        break;
+      default:
+        console.log(`⚠️ Unhandled event type: ${event.type}`);
+    }
+
+    return new Response("Received", { status: 200 });
   } catch (err) {
-    console.error("❌ Invalid Stripe signature:", err.message);
+    console.error("Stripe webhook error:", err.message);
     return new Response(`Webhook Error: ${err.message}`, { status: 400 });
   }
-
-  // Handle events
-  switch (event.type) {
-    case "checkout.session.completed": {
-      const session = event.data.object;
-      console.log("✅ Checkout completed:", session.id);
-
-      // TODO: Persist subscription data
-      // Example:
-      // await db.subscription.create({
-      //   data: {
-      //     email: session.customer_email,
-      //     stripeCustomerId: session.customer,
-      //     stripeSubscriptionId: session.subscription,
-      //     plan: session.metadata?.plan || "starter",
-      //     status: "active",
-      //   },
-      // });
-      break;
-    }
-
-    case "customer.subscription.updated": {
-      const subscription = event.data.object;
-      console.log("🔁 Subscription updated:", subscription.id);
-      // TODO: update status in DB
-      break;
-    }
-
-    case "customer.subscription.deleted": {
-      const subscription = event.data.object;
-      console.log("❌ Subscription canceled:", subscription.id);
-      // TODO: mark user subscription inactive in DB
-      break;
-    }
-
-    default:
-      console.log(`⚠️ Unhandled event type: ${event.type}`);
-  }
-
-  return new Response("Received", { status: 200 });
 }
-
-export const dynamic = "force-dynamic";
-export const runtime = "nodejs";
-export const preferredRegion = "home";
-export const maxDuration = 10;
-export const bodyParser = false; // disables Next.js parsing for raw body
