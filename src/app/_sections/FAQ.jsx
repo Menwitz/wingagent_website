@@ -5,7 +5,7 @@ import FAQItem from "../_components/FAQItem";
 
 const faqs = [
   {
-    q: "How much control do I have over WingAgent?",
+    q: "Do I stay in control?",
     a: `You stay in complete control at every stage. WingAgent never sends a message you haven’t approved in setup or tone training. You can pause, edit, or override replies in real time. Every action is transparent in your dashboard — think of it as a co-pilot, not a replacement.`,
   },
   {

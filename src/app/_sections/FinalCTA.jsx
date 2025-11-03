@@ -16,11 +16,14 @@ export default function FinalCTA() {
         <p className="mt-4 text-lg text-slate-300">
           Join thousands using AI to reclaim their time and meet smarter.
         </p>
+        <p className="mt-4 text-lg text-slate-300">
+        Focus on what matters—real connection.
+        </p>
         <a
           href="#"
           className="mt-10 inline-block rounded-full bg-gradient-to-r from-fuchsia-600 to-indigo-600 px-10 py-4 text-lg font-medium text-white shadow-[0_0_30px_rgba(240,0,184,0.25)] transition-all hover:shadow-[0_0_50px_rgba(240,0,184,0.4)] hover:scale-[1.03]"
         >
-          Sign up now
+          Join us now
         </a>
       </div>
     </section>

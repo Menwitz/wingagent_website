@@ -1,77 +1,68 @@
 "use client";
-
 import { useState, useEffect } from "react";
-import Logo from "./Logo";
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("");
-  const [scrollY, setScrollY] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  // Highlight active section as user scrolls
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-      const sections = ["how", "why", "pricing", "faq", "final"];
-      let current = "";
-      for (let id of sections) {
-        const el = document.getElementById(id);
-        if (el && window.scrollY >= el.offsetTop - 150) current = id;
-      }
-      setActive(current);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-slate-950/60 backdrop-blur-md border-b border-white/10">
-      <nav className="mx-auto flex items-center justify-between px-6 py-4 max-w-7xl">
-        {/* Logo */}
-        <a href="/" aria-label="WingAgent Home" className="flex items-center gap-2">
-          <Logo />
+    <header
+      className={`fixed top-0 z-50 w-full transition-all ${
+        scrolled ? "backdrop-blur-xl bg-slate-950/70 border-b border-white/10" : "bg-transparent"
+      }`}
+    >
+      <nav className="container mx-auto flex justify-between items-center px-6 py-4 text-white relative">
+        <a href="/" className="font-bold text-xl bg-gradient-to-r from-fuchsia-500 to-indigo-500 bg-clip-text text-transparent">
+          WingAgent
         </a>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8">
-          <a
-            href="#how"
-            className={`hover:text-fuchsia-400 transition-colors ${
-              active === "how" ? "text-fuchsia-400" : "text-slate-300"
-            }`}
+        {/* Desktop menu */}
+        <div className="hidden md:flex items-center gap-6 text-sm">
+          <a href="#how" className="hover:text-fuchsia-400 transition">How it works</a>
+          <a href="#why" className="hover:text-fuchsia-400 transition">Why WingAgent</a>
+          <a href="#pricing" className="hover:text-fuchsia-400 transition">Pricing</a>
+          <a href="#faq" className="hover:text-fuchsia-400 transition">FAQ</a>
+
+          {/* More Dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={() => setMoreOpen(true)}
+            onMouseLeave={() => setMoreOpen(false)}
           >
-            How it works
-          </a>
+            <button className="flex items-center gap-1 hover:text-fuchsia-400 transition">
+              More
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`w-4 h-4 transition-transform ${moreOpen ? "rotate-180" : ""}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {moreOpen && (
+              <div className="absolute right-0 mt-2 w-48 rounded-xl bg-slate-900/90 border border-white/10 backdrop-blur-xl shadow-xl text-left z-50">
+                <a href="/about" className="block px-4 py-2 hover:bg-white/10">About</a>
+                <a href="/technology" className="block px-4 py-2 hover:bg-white/10">Technology</a>
+                <a href="/security" className="block px-4 py-2 hover:bg-white/10">Security</a>
+                <a href="/press" className="block px-4 py-2 hover:bg-white/10">Press</a>
+                <a href="/blog" className="block px-4 py-2 hover:bg-white/10">Blog</a>
+                <a href="/demo" className="block px-4 py-2 hover:bg-white/10">Demo</a>
+              </div>
+            )}
+          </div>
+
           <a
-            href="#why"
-            className={`hover:text-fuchsia-400 transition-colors ${
-              active === "why" ? "text-fuchsia-400" : "text-slate-300"
-            }`}
-          >
-            Why WingAgent
-          </a>
-          <a
-            href="#pricing"
-            className={`hover:text-fuchsia-400 transition-colors ${
-              active === "pricing" ? "text-fuchsia-400" : "text-slate-300"
-            }`}
-          >
-            Pricing
-          </a>
-          <a
-            href="#faq"
-            className={`hover:text-fuchsia-400 transition-colors ${
-              active === "faq" ? "text-fuchsia-400" : "text-slate-300"
-            }`}
-          >
-            FAQ
-          </a>
-          <a href="/auth" className="text-slate-300 hover:text-fuchsia-400 transition-colors">
-            Login
-          </a>
-          <a
-            href="#final"
-            className="rounded-full bg-gradient-to-r from-fuchsia-600 to-indigo-600 px-5 py-2 font-medium text-white shadow-[0_0_20px_rgba(240,0,184,0.25)] hover:shadow-[0_0_35px_rgba(240,0,184,0.4)] hover:scale-[1.03] transition-all"
+            href="/auth"
+            className="ml-4 rounded-full bg-gradient-to-r from-fuchsia-600 to-indigo-600 px-6 py-2 font-medium text-sm hover:shadow-[0_0_20px_rgba(240,0,184,0.3)] transition"
           >
             Start now
           </a>
@@ -79,60 +70,46 @@ export default function Navbar() {
 
         {/* Mobile menu toggle */}
         <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden text-slate-300 hover:text-white focus:outline-none"
-          aria-label="Toggle menu"
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="md:hidden focus:outline-none"
+          aria-label="Menu"
         >
-          {open ? (
-            <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          ) : (
-            <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          )}
-        </button>
-      </nav>
-
-      {/* Mobile menu */}
-      {open && (
-        <div className="md:hidden bg-slate-950/95 backdrop-blur-md border-t border-white/10">
-          <div className="flex flex-col items-center gap-6 py-6 text-slate-300">
-            <a
-            href="#how"
-            className={`relative group transition-colors ${
-                active === "how" ? "text-white" : "text-slate-300"
-            } hover:text-white`}
-            >
-            How it works
-            <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-fuchsia-500 to-indigo-500 transition-all duration-300 group-hover:w-full" />
-            {active === "how" && (
-                <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-gradient-to-r from-fuchsia-500 to-indigo-500 animate-pulse" />
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            {menuOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             )}
-            </a>
-            <a href="#why" onClick={() => setOpen(false)} className="hover:text-fuchsia-400">
-              Why WingAgent
-            </a>
-            <a href="#pricing" onClick={() => setOpen(false)} className="hover:text-fuchsia-400">
-              Pricing
-            </a>
-            <a href="#faq" onClick={() => setOpen(false)} className="hover:text-fuchsia-400">
-              FAQ
-            </a>
-            <a href="/auth" onClick={() => setOpen(false)} className="hover:text-fuchsia-400">
-              Login / Sign Up
-            </a>
+          </svg>
+        </button>
+
+        {/* Mobile dropdown */}
+        {menuOpen && (
+          <div className="absolute top-full left-0 w-full bg-slate-950/95 border-t border-white/10 backdrop-blur-xl flex flex-col items-center gap-4 py-6 md:hidden">
+            <a href="#how" onClick={() => setMenuOpen(false)}>How it works</a>
+            <a href="#why" onClick={() => setMenuOpen(false)}>Why WingAgent</a>
+            <a href="#pricing" onClick={() => setMenuOpen(false)}>Pricing</a>
+            <a href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a>
+            <details className="w-full text-center">
+              <summary className="cursor-pointer">More</summary>
+              <div className="flex flex-col mt-2 space-y-2 text-slate-300">
+                <a href="/about" onClick={() => setMenuOpen(false)}>About</a>
+                <a href="/technology" onClick={() => setMenuOpen(false)}>Technology</a>
+                <a href="/security" onClick={() => setMenuOpen(false)}>Security</a>
+                <a href="/press" onClick={() => setMenuOpen(false)}>Press</a>
+                <a href="/blog" onClick={() => setMenuOpen(false)}>Blog</a>
+                <a href="/demo" onClick={() => setMenuOpen(false)}>Demo</a>
+              </div>
+            </details>
             <a
-              href="#final"
-              onClick={() => setOpen(false)}
-              className="rounded-full bg-gradient-to-r from-fuchsia-600 to-indigo-600 px-6 py-2 font-medium text-white"
+              href="/auth"
+              className="rounded-full bg-gradient-to-r from-fuchsia-600 to-indigo-600 px-6 py-2 font-medium text-sm hover:shadow-[0_0_20px_rgba(240,0,184,0.3)] transition"
             >
               Start now
             </a>
           </div>
-        </div>
-      )}
+        )}
+      </nav>
     </header>
   );
 }

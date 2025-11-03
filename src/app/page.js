@@ -8,6 +8,11 @@ import WhyChoose from "./_sections/WhyChoose";
 import Pricing from "./_sections/Pricing";
 import FAQ from "./_sections/FAQ";
 import FinalCTA from "./_sections/FinalCTA";
+import Testimonials from "./_sections/Testimonials";
+import Security from "./_sections/Security";
+import DemoStrip from "./_sections/DemoStrip";
+import BehindAI from "./_sections/BehindAI";
+import CTARepeat from "./_sections/CTARepeat";
 
 export default function Page() {
   return (
@@ -22,6 +27,11 @@ export default function Page() {
           <div className="h-px w-full bg-gradient-to-r from-transparent via-fuchsia-500/20 to-transparent" />
           <HowItWorks />
           <WhyChoose />
+          <Testimonials />
+            <Security />
+            <DemoStrip />
+            <BehindAI />
+            <CTARepeat />
           <div className="h-px w-full bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
           <Pricing />
           <FAQ />

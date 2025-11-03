@@ -4,12 +4,12 @@ import { useEffect, useRef } from "react";
 
 const features = [
   {
-    title: "Human-real tone messaging",
+    title: "Human-real conversation style",
     text: "WingAgent mirrors your humor, rhythm, and conversational boundaries so every message feels authentically yours.",
     icon: "💬",
   },
   {
-    title: "Adaptive match learning",
+    title: "AI-driven match learning",
     text: "Each chat trains the system to predict what works for you — refining tone, timing, and reply depth automatically.",
     icon: "🧠",
   },
@@ -29,7 +29,7 @@ const features = [
     icon: "📊",
   },
   {
-    title: "Fast onboarding questionnaire",
+    title: "Onboarding in minutes",
     text: "Answer a few smart prompts and you’re live in under five minutes. No manuals. No friction.",
     icon: "⚡",
   },
@@ -61,8 +61,8 @@ export default function WhyChoose() {
       />
 
       <div className="mx-auto max-w-6xl text-center">
-        <h2 className="text-3xl font-bold text-white sm:text-4xl">Why WingAgent</h2>
-        <p className="mt-2 text-slate-400 text-base">Why it works better.</p>
+        <h2 className="text-3xl font-bold text-white sm:text-4xl">Why Wing Agent?</h2>
+        <p className="mt-2 text-slate-400 text-base">Precision. Privacy. Performance.</p>
       </div>
 
       <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3 px-4 sm:px-6">

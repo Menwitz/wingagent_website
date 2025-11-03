@@ -76,6 +76,7 @@ export default function Pricing() {
         ))}
       </div>
 
+        <div>**All plans include encrypted data handling and optional human oversight.</div>
       {/* Waitlist input */}
       <form onSubmit={handleSubmit} className="max-w-md mx-auto flex flex-col sm:flex-row gap-4 mt-8">
         <input
