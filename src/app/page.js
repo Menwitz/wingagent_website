@@ -13,6 +13,7 @@ import Security from "./_sections/Security";
 import DemoStrip from "./_sections/DemoStrip";
 import BehindAI from "./_sections/BehindAI";
 import CTARepeat from "./_sections/CTARepeat";
+import SupportedApps from "./_sections/SupportedApps";
 
 export default function Page() {
     return (
@@ -22,7 +23,7 @@ export default function Page() {
                 <main id="top" className="relative">
                     <Hero />
                     <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                    <FeaturedIn />
+                    <SupportedApps />
                     <Stats />
                     <div className="h-px w-full bg-gradient-to-r from-transparent via-fuchsia-500/20 to-transparent" />
                     <HowItWorks />
