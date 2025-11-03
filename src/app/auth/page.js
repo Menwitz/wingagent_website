@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Navbar from "../_components/Navbar";
 import Footer from "../_components/Footer";
 import Logo from "../_components/Logo";
+import LegalConsentModal from "../_components/LegalConsentModal";
 
 export default function AuthPage() {
   const [isSignup, setIsSignup] = useState(false);
@@ -50,6 +51,7 @@ export default function AuthPage() {
 
   return (
     <main className="relative min-h-screen flex flex-col bg-slate-950 text-white overflow-hidden">
+      <LegalConsentModal />
       {/* Navbar */}
       <Navbar />
 

@@ -1,139 +1,119 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const steps = [
   {
-    title: "Tell us your vibe",
-    text: "Define your tone, humor, and personality so WingAgent messages as you would — genuine, effortless, and true to you.",
-    icon: (
-      <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="url(#grad1)" strokeWidth="1.5" strokeLinecap="round">
-        <defs>
-          <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#f000b8" />
-            <stop offset="100%" stopColor="#4f46e5" />
-          </linearGradient>
-        </defs>
-        <path d="M12 20c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7 3.582 7 8 7z" />
-        <path d="M9 12h6M9 15h4" />
-      </svg>
-    ),
+    title: "Create your account",
+    description:
+        "Quick onboarding with a short quiz so we calibrate from day one. Your answers shape tone, pacing, and boundaries.",
+    icon: "🙂",
+    position: "right",
   },
   {
-    title: "Connect your apps",
-    text: "Securely link Tinder, Bumble, and Hinge in one unified dashboard. Privacy and data isolation are built in.",
-    icon: (
-      <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="url(#grad2)" strokeWidth="1.5" strokeLinecap="round">
-        <defs>
-          <linearGradient id="grad2" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#4f46e5" />
-            <stop offset="100%" stopColor="#f000b8" />
-          </linearGradient>
-        </defs>
-        <path d="M12 3v18M3 12h18" />
-      </svg>
-    ),
+    title: "Set match criteria",
+    description:
+        "Physical preferences, personality traits, values, lifestyle filters, deal-breakers. Precision in → better matches out.",
+    icon: "➕",
+    position: "left",
   },
   {
-    title: "Automation starts",
-    text: "WingAgent handles swipes, discovers matches, and starts conversations across all connected apps automatically.",
-    icon: (
-      <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="url(#grad3)" strokeWidth="1.5" strokeLinecap="round">
-        <defs>
-          <linearGradient id="grad3" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#f000b8" />
-            <stop offset="100%" stopColor="#4f46e5" />
-          </linearGradient>
-        </defs>
-        <path d="M5 12l14-9v18L5 12z" />
-      </svg>
-    ),
+    title: "Define your vibe",
+    description:
+        "Your voice, humor, flirting energy, pace, and ‘never say’ rules. Everything the agent writes mirrors you.",
+    icon: "⚡",
+    position: "right",
   },
   {
+    title: "Connect apps or create new profiles",
+    description:
+        "Securely link Tinder, Bumble, Hinge — or let us craft optimized new profiles with photos and bios that match your brief.",
+    icon: "👤",
+    position: "left",
+  },
+    {
+    title: "Automation begins",
+    description:
+        "Smart swipes, profile filtering, and warm-up messages run on a schedule. Energy stays high, you stay hands-off.",
+    icon: "🙂",
+    position: "right",
+  },
+    {
+    title: "Real match notifications",
+    description:
+        "We notify you only when interest is real. No noise. Tap in when the chat is warmed and the vibe matches.",
+    icon: "➕",
+    position: "left",
+  },
+    {
     title: "You step in",
-    text: "When real interest appears, you’re notified instantly. Pick up the chat exactly where the AI left off — seamlessly.",
-    icon: (
-      <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="url(#grad4)" strokeWidth="1.5" strokeLinecap="round">
-        <defs>
-          <linearGradient id="grad4" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#4f46e5" />
-            <stop offset="100%" stopColor="#f000b8" />
-          </linearGradient>
-        </defs>
-        <path d="M3 21v-2a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v2" />
-        <circle cx="12" cy="7" r="4" />
-      </svg>
-    ),
-  },
+    description:
+        "Take over for authentic conversation and logistics. We back off. You keep full control at every step.",
+    icon: "👤",
+    position: "right",
+  }
 ];
 
 export default function HowItWorks() {
-  const ref = useRef(null);
+  const [visible, setVisible] = useState([]);
+  const ref = useRef([]);
 
   useEffect(() => {
-    const section = ref.current;
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) section.classList.add("animate-lineFlow");
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setVisible((prev) => [...new Set([...prev, index])]);
+          }
         });
       },
       { threshold: 0.2 }
     );
-    if (section) observer.observe(section);
-    return () => observer.disconnect();
+
+    ref.current.forEach((el) => el && observer.observe(el));
+    return () => ref.current.forEach((el) => el && observer.unobserve(el));
   }, []);
 
   return (
-    <section
-      id="how"
-      ref={ref}
-      className="relative z-10 bg-gradient-to-b from-slate-900 to-slate-800 py-24 sm:py-28 overflow-hidden"
-    >
-      <div className="mx-auto max-w-5xl text-center">
-        <h2 className="text-3xl font-bold text-white sm:text-4xl">How it works</h2>
-        <p className="mt-3 text-slate-400 text-base">
-          Your AI handles the heavy lifting in four simple steps.
-        </p>
-      </div>
+    <section id="how" className="relative py-24 text-center">
+      <h2 className="text-3xl font-bold mb-2">How it works</h2>
+      <p className="text-slate-400 max-w-xl mx-auto mb-20">
+        Your AI handles the heavy lifting in four precise steps.
+      </p>
 
-      {/* connector line */}
-      <svg
-        className="absolute left-1/2 top-0 -z-10 h-[200%] w-px -translate-x-1/2"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <linearGradient id="flowLine" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#f000b8" />
-            <stop offset="100%" stopColor="#4f46e5" />
-          </linearGradient>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#flowLine)" opacity="0.3" className="animate-flow" />
-      </svg>
+      {/* timeline line */}
+      <div className="absolute left-1/2 top-32 bottom-10 w-px bg-gradient-to-b from-fuchsia-500 via-purple-700 to-transparent opacity-60 animate-pulse-slow" />
 
-      <div className="relative mx-auto mt-20 flex flex-col gap-28 max-w-4xl">
-        {steps.map((s, i) => (
+      {steps.map((step, i) => {
+        const isVisible = visible.includes(i);
+        const side = step.position === "left" ? "left-0 pr-16 text-right" : "right-0 pl-16 text-left";
+
+        return (
           <div
             key={i}
-            className={`relative flex flex-col sm:flex-row items-center ${
-              i % 2 === 0 ? "sm:flex-row-reverse" : ""
+            ref={(el) => (ref.current[i] = el)}
+            className={`relative flex items-center justify-center w-full max-w-4xl mx-auto mb-24 transition-all duration-700 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-white/10 backdrop-blur-xl shadow-[0_0_25px_rgba(240,0,184,0.3)]">
-              {s.icon}
+            {/* card */}
+            <div className={`absolute w-1/2 ${side}`}>
+              <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
+              <p className="text-slate-400 text-sm leading-relaxed">{step.description}</p>
             </div>
 
-            <div
-              className={`mt-6 sm:mt-0 sm:w-1/2 ${
-                i % 2 === 0 ? "sm:pr-12 text-left" : "sm:pl-12 text-right sm:self-end"
-              }`}
-            >
-              <h3 className="text-xl font-semibold text-white">{s.title}</h3>
-              <p className="mt-2 text-slate-300 text-sm leading-relaxed">{s.text}</p>
+            {/* node icon */}
+            <div className="relative z-10 flex items-center justify-center">
+              <div className="h-12 w-12 flex items-center justify-center rounded-full border border-fuchsia-500/60 bg-black/40 backdrop-blur-md shadow-[0_0_20px_rgba(240,0,184,0.4)] cursor-pointer hover:scale-110 transition-transform">
+                <span className="text-xl">{step.icon}</span>
+              </div>
+
+              {/* pulse ring */}
+              <div className="absolute inset-0 rounded-full border border-fuchsia-500/30 animate-ping-slow" />
             </div>
           </div>
-        ))}
-      </div>
+        );
+      })}
     </section>
   );
 }
