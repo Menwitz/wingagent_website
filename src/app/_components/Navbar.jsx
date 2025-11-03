@@ -30,7 +30,6 @@ export default function Navbar() {
         {/* Logo */}
         <a href="/" aria-label="WingAgent Home" className="flex items-center gap-2">
           <Logo />
-          <span className="text-white font-semibold text-lg tracking-tight">WingAgent</span>
         </a>
 
         {/* Desktop links */}

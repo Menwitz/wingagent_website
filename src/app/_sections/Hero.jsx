@@ -1,25 +1,7 @@
 "use client";
-
-import { useEffect, useRef } from "react";
+import { useRef, useEffect } from "react";
 import DashboardPreview from "../_components/DashboardPreview";
 import Reveal from "../_components/Reveal";
-
-export default function Hero() {
-  return (
-    <section id="hero" className="relative py-32">
-      <Reveal>
-        <h1 className="text-5xl font-bold text-white text-center mb-4">
-          Your personal AI wingman.
-        </h1>
-      </Reveal>
-      <Reveal delay={0.2}>
-        <p className="text-slate-300 text-center text-lg">
-          Swipe. Match. Chat. Meet. Automation handles the discovery and warmup.
-        </p>
-      </Reveal>
-    </section>
-  );
-}
 
 export default function Hero() {
   const previewRef = useRef(null);
@@ -37,48 +19,35 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="hero" className="section relative overflow-hidden pt-24 sm:pt-28">
-      {/* animated gradient background lighting */}
-      <div
-        className="animated-gradient pointer-events-none absolute inset-0 -z-20"
-        aria-hidden="true"
-      />
-
-      {/* drifting background word */}
-      <div
-        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 w-[120%] -translate-x-1/2 -translate-y-1/2 text-center text-[12rem] font-extrabold tracking-tight text-transparent opacity-[0.05] blur-sm animate-heroFloat
-                   bg-gradient-to-r from-brandStart via-pink-500 to-brandEnd bg-clip-text select-none"
-        aria-hidden="true"
-      >
-        AUTOMATED
-      </div>
+    <section id="hero" className="relative overflow-hidden pt-24 sm:pt-28">
+      {/* background gradient */}
+      <div className="absolute inset-0 -z-20 animate-gradientMotion bg-[radial-gradient(circle_at_30%_30%,#f000b8_0%,transparent_40%),radial-gradient(circle_at_70%_70%,#4f46e5_0%,transparent_40%)] blur-3xl opacity-25" />
 
       <div className="mx-auto max-w-6xl text-center">
         <p className="text-sm uppercase tracking-wider text-slate-400">
           Private AI for your dating life.
         </p>
 
-        <h1 className="mx-auto mt-2 max-w-3xl bg-gradient-to-r from-brandStart via-pink-400 to-brandEnd bg-clip-text text-4xl font-extrabold text-transparent sm:text-5xl">
+        <h1 className="mx-auto mt-2 max-w-3xl bg-gradient-to-r from-fuchsia-500 to-indigo-500 bg-clip-text text-4xl font-extrabold text-transparent sm:text-5xl">
           Your personal AI wingman.
         </h1>
 
         <p className="mx-auto mt-5 max-w-2xl text-base text-slate-300">
-          WingAgent automates swiping, matching, and first messages — so you invest
-          time only when the spark is real.
-        </p>
-
-        <p className="mt-3 text-sm text-slate-400">
-          Available on Tinder, Bumble, and Hinge.
+          WingAgent automates swiping, matching, and first messages — so you
+          invest time only when the spark is real.
         </p>
 
         <div className="mt-10 flex items-center justify-center gap-4">
-<a
-  href="#final"
-  className="btn-shine btn-magnetic inline-block rounded-full bg-gradient-to-r from-fuchsia-600 to-indigo-600 px-8 py-3 text-lg font-medium text-white shadow-[0_0_30px_rgba(240,0,184,0.25)] hover:shadow-[0_0_45px_rgba(240,0,184,0.4)]"
->
-  Start now
-</a>
-          <a href="#how" className="btn btn-ghost">
+          <a
+            href="#final"
+            className="btn-shine btn-magnetic inline-block rounded-full bg-gradient-to-r from-fuchsia-600 to-indigo-600 px-8 py-3 text-lg font-medium text-white shadow-[0_0_30px_rgba(240,0,184,0.25)] hover:shadow-[0_0_45px_rgba(240,0,184,0.4)]"
+          >
+            Start now
+          </a>
+          <a
+            href="#how"
+            className="rounded-full border border-white/20 px-8 py-3 text-lg font-medium text-white hover:bg-white/10 transition"
+          >
             See how it works
           </a>
         </div>
