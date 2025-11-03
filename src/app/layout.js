@@ -1,6 +1,7 @@
 import "./globals.css";
 import SmoothScroll from "./_components/SmoothScroll";
 import { Analytics } from "@vercel/analytics/next"
+import CookieBanner from "./_components/CookieBanner";
 
 <script
     type="application/ld+json"
@@ -110,6 +111,7 @@ export default function RootLayout({ children }) {
             <body className="bg-slate-950 text-white antialiased">
                 <SmoothScroll />
                 {children}
+                <CookieBanner />
             </body>
         </html>
     );
