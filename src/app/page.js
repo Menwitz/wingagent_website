@@ -15,30 +15,30 @@ import BehindAI from "./_sections/BehindAI";
 import CTARepeat from "./_sections/CTARepeat";
 
 export default function Page() {
-  return (
-    <>
-      <div className="bg-radial-fade">
-        <Navbar />
-        <main id="top" className="relative">
-          <Hero />
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-          <Stats />
-          <FeaturedIn />
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-fuchsia-500/20 to-transparent" />
-          <HowItWorks />
-          <WhyChoose />
-          <Testimonials />
-            <Security />
-            <DemoStrip />
-            <BehindAI />
-            <CTARepeat />
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
-          <Pricing />
-          <FAQ />
-          <FinalCTA />
-        </main>
-        <Footer />
-      </div>
-    </>
-  );
+    return (
+        <>
+            <div className="bg-radial-fade">
+                <Navbar />
+                <main id="top" className="relative">
+                    <Hero />
+                    <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                    <Stats />
+                    <FeaturedIn />
+                    <div className="h-px w-full bg-gradient-to-r from-transparent via-fuchsia-500/20 to-transparent" />
+                    <HowItWorks />
+                    <WhyChoose />
+                    <Security />
+                    <DemoStrip />
+                    <BehindAI />
+                    <CTARepeat />
+                    <div className="h-px w-full bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
+                    <Testimonials />
+                    <Pricing />
+                    <FAQ />
+                    <FinalCTA />
+                </main>
+                <Footer />
+            </div>
+        </>
+    );
 }
