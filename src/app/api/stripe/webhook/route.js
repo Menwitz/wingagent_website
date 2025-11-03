@@ -65,8 +65,8 @@ export async function POST(req) {
   return new Response("Received", { status: 200 });
 }
 
-export const config = {
-  api: {
-    bodyParser: false, // Stripe requires raw body
-  },
-};
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+export const preferredRegion = "home";
+export const maxDuration = 10;
+export const bodyParser = false; // disables Next.js parsing for raw body
