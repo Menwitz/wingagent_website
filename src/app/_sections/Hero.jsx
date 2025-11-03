@@ -29,8 +29,12 @@ export default function Hero() {
                     Private AI for your dating life.
                 </p>
 
-                <h1 className="mx-auto mt-2 max-w-3xl bg-gradient-to-r from-fuchsia-500 to-indigo-500 bg-clip-text text-4xl font-extrabold text-transparent sm:text-5xl">
-                    Your personal AI wingman.
+                <h1
+                    className="mt-2 mx-auto w-full text-center whitespace-nowrap
+             bg-gradient-to-r from-fuchsia-500 to-indigo-500 bg-clip-text text-transparent
+             font-black tracking-tight leading-none drop-shadow-lg
+             text-[clamp(1.6rem,7.2vw,5.75rem)]">
+                    Your Personal AI Wingman.
                 </h1>
 
                 <p className="mx-auto mt-5 max-w-2xl text-base text-slate-300">
@@ -60,8 +64,8 @@ export default function Hero() {
                 className="mx-auto mt-16 max-w-6xl transition-transform duration-500"
             >
                 <div className="bg-slate-900/60 border border-white/10 rounded-2xl p-6 shadow-2xl">
-  <DashboardPreview speed="normal" />
-</div>
+                    <DashboardPreview speed="normal" />
+                </div>
             </div>
 
             {/*            <div
