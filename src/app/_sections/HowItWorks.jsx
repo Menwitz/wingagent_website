@@ -53,17 +53,37 @@ const steps = [
 ];
 
 export default function HowItWorks() {
-  const [visible, setVisible] = useState([]);
+  const [visible, setVisible] = useState([]); // number[]
   const [progress, setProgress] = useState(0);
-  const ref = useRef([]);
+  const refs = useRef([]); // HTMLElement[]
+
+  // keep refs sized to steps
+  if (refs.current.length !== steps.length) refs.current = Array(steps.length);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => entries.forEach((e, i) => e.isIntersecting && setVisible(p => [...new Set([...p, i])])), 
-      { threshold: 0.15 }
+    const obs = new IntersectionObserver(
+      (entries) => {
+        setVisible((prev) => {
+          const next = new Set(prev);
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            const idx = Number(entry.target.dataset.index);
+            if (!Number.isNaN(idx)) {
+              next.add(idx);
+              obs.unobserve(entry.target); // stop after reveal
+            }
+          }
+          return Array.from(next).sort((a, b) => a - b);
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -10% 0px",
+      }
     );
-    ref.current.forEach(el => el && observer.observe(el));
-    return () => ref.current.forEach(el => el && observer.unobserve(el));
+
+    for (const el of refs.current) if (el) obs.observe(el);
+    return () => obs.disconnect();
   }, []);
 
   useEffect(() => {
@@ -71,10 +91,14 @@ export default function HowItWorks() {
       const el = document.getElementById("how");
       if (!el) return;
       const rect = el.getBoundingClientRect();
-      const pct = Math.min(Math.max((window.innerHeight - rect.top) / (rect.height + window.innerHeight), 0), 1);
+      const pct = Math.min(
+        Math.max((window.innerHeight - rect.top) / (rect.height + window.innerHeight), 0),
+        1
+      );
       setProgress(pct);
     };
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -101,7 +125,8 @@ export default function HowItWorks() {
         return (
           <div
             key={i}
-            ref={el => (ref.current[i] = el)}
+            ref={(el) => (refs.current[i] = el)}
+            data-index={i}
             className={`relative flex items-center justify-center w-full max-w-5xl mx-auto mb-20 transition-all duration-700 ${
               active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
