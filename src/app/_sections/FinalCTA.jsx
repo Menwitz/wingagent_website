@@ -23,7 +23,7 @@ export default function FinalCTA() {
           href="#"
           className="mt-10 inline-block rounded-full bg-gradient-to-r from-fuchsia-600 to-indigo-600 px-10 py-4 text-lg font-medium text-white shadow-[0_0_30px_rgba(240,0,184,0.25)] transition-all hover:shadow-[0_0_50px_rgba(240,0,184,0.4)] hover:scale-[1.03]"
         >
-          Join us now
+          Get Started in 2 Minutes
         </a>
       </div>
     </section>

@@ -36,7 +36,7 @@ export default function FAQ() {
       <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
         <h2 className="text-3xl font-bold text-white sm:text-4xl">FAQ</h2>
         <p className="mt-3 text-slate-400 text-base">
-          Everything you want to know before letting an AI handle your matches.
+          Have questions? We've got answers. Everything you want to know before letting an AI handle your matches.
         </p>
 
         <div className="mt-14 space-y-6 text-left">

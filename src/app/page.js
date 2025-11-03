@@ -22,8 +22,8 @@ export default function Page() {
                 <main id="top" className="relative">
                     <Hero />
                     <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                    <Stats />
                     <FeaturedIn />
+                    <Stats />
                     <div className="h-px w-full bg-gradient-to-r from-transparent via-fuchsia-500/20 to-transparent" />
                     <HowItWorks />
                     <WhyChoose />

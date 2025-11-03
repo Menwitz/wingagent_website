@@ -13,7 +13,7 @@ export default function FeaturedIn() {
     <section id="featured" className="relative z-10 py-16">
       <div className="mx-auto max-w-6xl text-center">
         <h2 className="text-sm uppercase tracking-widest text-slate-400 mb-8">
-          As seen in
+          Trusted by professionals in tech, finance, consulting, and creative fields.
         </h2>
 
         <div className="relative overflow-hidden">

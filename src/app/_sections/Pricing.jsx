@@ -73,7 +73,7 @@ export default function Pricing() {
             <h2 className="text-4xl font-bold text-white mb-10">
                 Flexible Plans for Everyone </h2>
             <p className="mx-auto mt-5 max-w-2xl text-base text-slate-300">
-                Choose a plan that fits your goals and scale as you grow </p>
+                Pay for time saved, not hype </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
                 {plans.map((plan) => (
                     <PricingCard key={plan.name} data={plan} />
