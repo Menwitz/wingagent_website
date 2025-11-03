@@ -100,8 +100,17 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden bg-slate-950/95 backdrop-blur-md border-t border-white/10">
           <div className="flex flex-col items-center gap-6 py-6 text-slate-300">
-            <a href="#how" onClick={() => setOpen(false)} className="hover:text-fuchsia-400">
-              How it works
+            <a
+            href="#how"
+            className={`relative group transition-colors ${
+                active === "how" ? "text-white" : "text-slate-300"
+            } hover:text-white`}
+            >
+            How it works
+            <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-fuchsia-500 to-indigo-500 transition-all duration-300 group-hover:w-full" />
+            {active === "how" && (
+                <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-gradient-to-r from-fuchsia-500 to-indigo-500 animate-pulse" />
+            )}
             </a>
             <a href="#why" onClick={() => setOpen(false)} className="hover:text-fuchsia-400">
               Why WingAgent

@@ -2,6 +2,24 @@
 
 import { useEffect, useRef } from "react";
 import DashboardPreview from "../_components/DashboardPreview";
+import Reveal from "../_components/Reveal";
+
+export default function Hero() {
+  return (
+    <section id="hero" className="relative py-32">
+      <Reveal>
+        <h1 className="text-5xl font-bold text-white text-center mb-4">
+          Your personal AI wingman.
+        </h1>
+      </Reveal>
+      <Reveal delay={0.2}>
+        <p className="text-slate-300 text-center text-lg">
+          Swipe. Match. Chat. Meet. Automation handles the discovery and warmup.
+        </p>
+      </Reveal>
+    </section>
+  );
+}
 
 export default function Hero() {
   const previewRef = useRef(null);
@@ -54,9 +72,12 @@ export default function Hero() {
         </p>
 
         <div className="mt-10 flex items-center justify-center gap-4">
-          <a href="#pricing" className="btn btn-primary shimmer-btn shadow-glow">
-            Start now
-          </a>
+<a
+  href="#final"
+  className="btn-shine btn-magnetic inline-block rounded-full bg-gradient-to-r from-fuchsia-600 to-indigo-600 px-8 py-3 text-lg font-medium text-white shadow-[0_0_30px_rgba(240,0,184,0.25)] hover:shadow-[0_0_45px_rgba(240,0,184,0.4)]"
+>
+  Start now
+</a>
           <a href="#how" className="btn btn-ghost">
             See how it works
           </a>
