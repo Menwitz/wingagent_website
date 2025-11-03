@@ -1,6 +1,6 @@
 "use client";
 import { useRef, useEffect } from "react";
-import DashboardPreview from "../_components/DashboardPreview";
+import DashboardPreview from "../_components/dashboard/DashboardPreview";
 import Reveal from "../_components/Reveal";
 import PhoneMock from "../_components/PhoneMock";
 
@@ -55,12 +55,13 @@ export default function Hero() {
                 </div>
             </div>
 
-            <div
-                id="dashboard"
+            <div id="dashboard"
                 ref={previewRef}
                 className="mx-auto mt-16 max-w-6xl transition-transform duration-500"
             >
-                <DashboardPreview />
+                <div className="bg-slate-900/60 border border-white/10 rounded-2xl p-6 shadow-2xl">
+  <DashboardPreview speed="normal" />
+</div>
             </div>
 
             {/*            <div

@@ -284,3 +284,49 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 .animate-marquee-reverse {
   animation: marquee-reverse 28s linear infinite;
 }
+
+/* ====== WingAgent dashboard micro-animations ====== */
+
+/* pulsing dot in RunStatus */
+@keyframes wa-pulse-dot {
+  0%, 100% { transform: scale(1); opacity: .8; }
+  50% { transform: scale(1.35); opacity: .4; }
+}
+.wa-pulse-dot { animation: wa-pulse-dot calc(1.6s * var(--wa-speed, 1)) ease-in-out infinite; }
+
+/* swipe directions */
+@keyframes wa-swipe-left {
+  0%   { transform: translateX(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateX(-120%) rotate(-12deg); opacity: 0; }
+}
+@keyframes wa-swipe-right {
+  0%   { transform: translateX(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateX(120%) rotate(12deg); opacity: 0; }
+}
+.wa-swipe-left { animation: wa-swipe-left calc(1s * var(--wa-speed, 1)) ease-in forwards; }
+.wa-swipe-right { animation: wa-swipe-right calc(1s * var(--wa-speed, 1)) ease-in forwards; }
+
+/* bubble in */
+@keyframes wa-bubble-in {
+  0%   { transform: translateY(6px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.wa-bubble-in { animation: wa-bubble-in calc(.35s * var(--wa-speed, 1)) ease-out; }
+
+/* sparkline placeholder (diagonal shimmer) */
+.wa-sparkline {
+  background: linear-gradient(90deg, rgba(255,255,255,0.06) 25%, rgba(255,255,255,0.14) 50%, rgba(255,255,255,0.06) 75%);
+  background-size: 300% 100%;
+  animation: wa-shimmer calc(2.2s * var(--wa-speed, 1)) ease-in-out infinite;
+}
+@keyframes wa-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* endless ticker */
+@keyframes wa-ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.wa-ticker { animation: wa-ticker calc(18s * var(--wa-speed, 1)) linear infinite; }
