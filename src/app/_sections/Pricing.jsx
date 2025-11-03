@@ -7,58 +7,77 @@ export default function Pricing() {
   const [status, setStatus] = useState("");
   const [billing, setBilling] = useState("monthly"); // "monthly" | "yearly"
 
-  // Base MONTHLY prices (your current numbers)
-  const basePlans = useMemo(() => ([
-    {
-      name: "Starter",
-      price: 49.99,
-      highlight: false,
-      features: [
-        "1 connected platform",
-        "Up to 500 automated swipes/month",
-        "Basic AI message templates",
-        "Standard onboarding",
-        "Email support",
-      ],
-    },
-    {
-      name: "Pro",
-      price: 149.99,
-      highlight: true,
-      features: [
-        "All platforms (Tinder, Bumble, Hinge)",
-        "5,000 AI-driven swipes/month",
-        "Adaptive tone-matching replies",
-        "Conversation analytics dashboard",
-        "Priority support",
-      ],
-    },
-    {
-      name: "Elite",
-      price: 299.99,
-      highlight: false,
-      features: [
-        "Unlimited automation access",
-        "Human-in-the-loop QA on messages",
-        "Weekly personalized reports",
-        "Advanced sentiment analytics",
-        "Dedicated success engineer",
-      ],
-    },
-  ]), []);
+  // Base MONTHLY prices
+  const basePlans = useMemo(
+    () => [
+      {
+        name: "Starter",
+        price: 49.99,
+        highlight: false,
+        features: [
+          "1 connected platform (Tinder or Bumble or Hinge)",
+          "Up to 500 automated swipes/month (rate-limit aware)",
+          "Onboarding quiz + vibe profile",
+          "Basic tone-matched opener set",
+          "Email notifications (new matches & replies)",
+          "Basic analytics (matches, warm threads)",
+        ],
+      },
+      {
+        name: "Pro",
+        price: 149.99,
+        highlight: true,
+        features: [
+          "All platforms (Tinder, Bumble, Hinge)",
+          "5,000 AI-driven swipes/month",
+          "Adaptive replies that learn your style",
+          "Smart opener rotation & keyword hooks",
+          "Boundary guardrails + redline filter",
+          "Schedules & quiet hours per app",
+          "Conversation analytics dashboard",
+          "A/B test openers (auto-select winner)",
+          "Multi-channel alerts (email + SMS + push)",
+          "Priority support (fast lane)",
+        ],
+      },
+      {
+        name: "Elite",
+        // keep a numeric as fallback, but display Custom via priceLabel
+        price: 299.99,
+        priceLabel: "Custom",
+        highlight: false,
+        features: [
+          "Unlimited automation windows (within platform limits)",
+          "Human-in-the-loop QA on sensitive replies",
+          "Dedicated success engineer & playbook",
+          "Custom persona & profile build (bio/photos)",
+          "Multi-city / multi-device coverage",
+          "Rate-limit smoothing & failover queues",
+          "VIP handoff concierge & calendar nudges",
+          "Advanced analytics (funnels, cohorts, leaders)",
+          "Custom integrations & exports (S3/ClickHouse)",
+          "SLA & compliance documentation",
+        ],
+        ctaLabel: "Contact us",
+        ctaHref: "/contact",
+        custom: true,
+      },
+    ],
+    []
+  );
 
   // Compute displayed plans by billing cycle
   const plans = useMemo(() => {
     const yearly = billing === "yearly";
-    return basePlans.map((p) => ({
-      ...p,
-      // Yearly = 10× monthly (2 months free)
-      price: yearly ? Number((p.price * 10).toFixed(2)) : p.price,
-      // Inject a "2 months free" bullet only for yearly
-      features: yearly ? [...p.features, "2 months free"] : p.features,
-      // Pass cycle hint (your PricingCard can ignore if not used)
-      cycle: billing, // "monthly" or "yearly"
-    }));
+    return basePlans.map((p) => {
+      if (p.custom) {
+        // Elite stays “Custom” — no price math, no /mo label
+        return { ...p, cycle: billing };
+      }
+      const computedPrice = yearly ? Number((p.price * 10).toFixed(2)) : p.price; // 2 months free
+      const feats = yearly ? [...p.features, "2 months free"] : p.features;
+      return { ...p, price: computedPrice, cycle: billing, features: feats };
+    });
   }, [basePlans, billing]);
 
   // Waitlist submit (unchanged)
@@ -92,9 +111,7 @@ export default function Pricing() {
           <button
             onClick={() => setBilling("monthly")}
             className={`px-4 py-1.5 text-sm rounded-full transition ${
-              billing === "monthly"
-                ? "bg-white text-slate-900"
-                : "text-slate-300 hover:text-white"
+              billing === "monthly" ? "bg-white text-slate-900" : "text-slate-300 hover:text-white"
             }`}
             aria-pressed={billing === "monthly"}
           >
@@ -103,9 +120,7 @@ export default function Pricing() {
           <button
             onClick={() => setBilling("yearly")}
             className={`px-4 py-1.5 text-sm rounded-full transition flex items-center gap-2 ${
-              billing === "yearly"
-                ? "bg-white text-slate-900"
-                : "text-slate-300 hover:text-white"
+              billing === "yearly" ? "bg-white text-slate-900" : "text-slate-300 hover:text-white"
             }`}
             aria-pressed={billing === "yearly"}
           >
@@ -148,12 +163,8 @@ export default function Pricing() {
       </form>
 
       {/* Inline feedback */}
-      {status === "success" && (
-        <p className="mt-3 text-fuchsia-400">You're on the list! We'll notify you soon.</p>
-      )}
-      {status === "error" && (
-        <p className="mt-3 text-red-400">Something went wrong. Please try again.</p>
-      )}
+      {status === "success" && <p className="mt-3 text-fuchsia-400">You're on the list! We'll notify you soon.</p>}
+      {status === "error" && <p className="mt-3 text-red-400">Something went wrong. Please try again.</p>}
     </section>
   );
 }
