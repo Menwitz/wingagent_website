@@ -60,7 +60,7 @@ export const metadata = {
         type: "website",
         images: [
             {
-                url: "https://wingagent-website.vercel.app/og-cover.svg",
+                url: "https://wingagent-website.vercel.app/og-image.png",
                 width: 1200,
                 height: 630,
                 alt: "WingAgent AI preview",
