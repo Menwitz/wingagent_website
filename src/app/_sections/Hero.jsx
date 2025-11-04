@@ -37,17 +37,17 @@ export default function Hero() {
                     Your Personal AI Wingman.
                 </h1>
 
-                <p className="mx-auto mt-5 max-w-2xl text-base text-slate-300">
+                <p className="mx-auto mt-5 max-w-2xl text-base text-slate-400 max-w-2xl mx-auto">
                     WingAgent automates swiping, matching, and first messages — so you
                     invest time only when the spark is real.
                 </p>
 
                 <div className="mt-10 flex items-center justify-center gap-4 w-full max-w-md mx-auto">
                     <a
-                        href="#final"
+                        href="#pricing"
                         className="btn-shine btn-magnetic inline-block rounded-full bg-gradient-to-r from-fuchsia-600 to-indigo-600 px-8 py-3 text-lg font-medium text-white shadow-[0_0_30px_rgba(240,0,184,0.25)] hover:shadow-[0_0_45px_rgba(240,0,184,0.4)] flex-1 text-center"
                     >
-                        Start now
+                        See plans & Start
                     </a>
 
                     <a

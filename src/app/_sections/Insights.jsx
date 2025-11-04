@@ -1,3 +1,4 @@
+// src/app/_sections/Insights.jsx
 "use client";
 
 export default function Insights() {
@@ -11,18 +12,18 @@ export default function Insights() {
           AI-DRIVEN EFFICIENCY
         </p>
         <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-4">
-          Private by Design.
+          Never Miss an Opportunity
         </h2>
         <p className="text-slate-400 max-w-2xl mx-auto mb-16">
-          Privacy and discretion are not features—they’re foundations.
+          Capture leads, analyze trends, and centralize critical insights.
         </p>
 
         {/* Feature cards */}
         <div className="grid gap-6 md:grid-cols-3">
           {[
             {
-              title: "Encrypted by default",
-              desc: "All messages and preferences stay private—never sold or shared.",
+              title: "Effortless Integration",
+              desc: "Your data is synced in real-time across devices, ensuring you stay connected and informed—online or offline.",
               icon: (
                 <svg
                   className="w-6 h-6 text-fuchsia-400"
@@ -36,8 +37,8 @@ export default function Insights() {
               ),
             },
             {
-              title: "Proxy-isolated automation",
-              desc: "Each session runs in a sealed environment to protect your dating profiles.",
+              title: "Secure & Scalable",
+              desc: "Enterprise-grade encryption protects your information, while flexible tools adapt to your business needs.",
               icon: (
                 <svg
                   className="w-6 h-6 text-indigo-400"
@@ -51,8 +52,8 @@ export default function Insights() {
               ),
             },
             {
-              title: "You control the switch",
-              desc: "Pause, delete, or export your data anytime from your dashboard.",
+              title: "Actionable Insights",
+              desc: "Leverage AI-powered analytics to identify trends, predict outcomes, and optimize your workflow effortlessly.",
               icon: (
                 <svg
                   className="w-6 h-6 text-fuchsia-400"

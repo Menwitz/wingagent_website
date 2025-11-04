@@ -61,7 +61,7 @@ export default function Navbar() {
           </div>
 
           <a
-            href="/auth"
+            href="/signup"
             className="ml-4 rounded-full bg-gradient-to-r from-fuchsia-600 to-indigo-600 px-6 py-2 font-medium text-sm hover:shadow-[0_0_20px_rgba(240,0,184,0.3)] transition"
           >
             Start now

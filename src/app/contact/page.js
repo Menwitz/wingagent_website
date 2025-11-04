@@ -1,3 +1,6 @@
+import Navbar from "../_components/MinimalNavbar";
+import Footer from "../_components/MinimalFooter";
+
 export const metadata = {
   title: "Contact Us — WingAgent",
   description: "Get in touch with the WingAgent team for questions, partnerships, or support.",
@@ -7,6 +10,7 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <main className="max-w-3xl mx-auto px-6 py-24 text-slate-300">
+      <Navbar />
       <h1 className="text-3xl font-bold text-white mb-6">Contact Us</h1>
       <p className="mb-8">
         We’re here to help. For product inquiries, media partnerships, or support,
@@ -25,6 +29,7 @@ export default function ContactPage() {
           Send message
         </button>
       </form>
+      <Footer />
     </main>
   );
 }

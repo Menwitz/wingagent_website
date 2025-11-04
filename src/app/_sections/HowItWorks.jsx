@@ -104,8 +104,8 @@ export default function HowItWorks() {
 
   return (
     <section id="how" className="relative py-24 text-center">
-      <h2 className="text-3xl font-bold mb-2">How it works</h2>
-      <p className="text-slate-400 max-w-xl mx-auto mb-20">
+      <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-4">How it works</h2>
+      <p className="text-slate-400 max-w-2xl mx-auto mb-16">
         Your AI handles the effort. You handle the connection.
       </p>
 

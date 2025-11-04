@@ -138,7 +138,7 @@ export default function PricingCard({ data = {}, yearly = false }) {
           </a>
         ) : (
           <button
-            onClick={() => handleCheckout(planCode, isYearly ? "yearly" : "monthly")}
+            onClick={() => (window.location.href = `/signup?plan=${planCode}`)}
             className={`mt-8 text-center rounded-full py-3 font-medium transition-all ${
               highlight
                 ? "bg-gradient-to-r from-fuchsia-600 to-indigo-600 text-white shadow-[0_0_25px_rgba(240,0,184,0.3)]"

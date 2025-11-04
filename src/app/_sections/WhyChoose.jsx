@@ -1,85 +1,137 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import Image from "next/image";
 
-const features = [
-  {
-    title: "Human-real conversation style",
-    text: "WingAgent mirrors your humor, rhythm, and conversational boundaries so every message feels authentically yours.",
-    icon: "💬",
-  },
-  {
-    title: "AI-driven match learning",
-    text: "Each chat trains the system to predict what works for you — refining tone, timing, and reply depth automatically.",
-    icon: "🧠",
-  },
-  {
-    title: "Unified multi-app automation",
-    text: "Operate Tinder, Bumble, and Hinge from one dashboard. One interface, complete control.",
-    icon: "⚙️",
-  },
-  {
-    title: "Safety & privacy isolation",
-    text: "All tokens and credentials stay sandboxed with encryption. Your personal data never leaves your private environment.",
-    icon: "🔒",
-  },
-  {
-    title: "Dedicated match funnel reporting",
-    text: "Track your conversion path visually — from swipes to hand-offs — to understand what drives real connections.",
-    icon: "📊",
-  },
-  {
-    title: "Onboarding in minutes",
-    text: "Answer a few smart prompts and you’re live in under five minutes. No manuals. No friction.",
-    icon: "⚡",
-  },
-];
-
-export default function WhyChoose() {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    const obs = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && el.classList.add("animate-fadeUp")),
-      { threshold: 0.2 }
-    );
-    if (el) obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
+export default function WhyWingAgent() {
   return (
-    <section
-      id="why"
-      ref={ref}
-      className="relative z-10 bg-gradient-to-b from-slate-800 to-slate-900 py-24 sm:py-28 overflow-hidden"
-    >
-      {/* dotted grid backdrop */}
-      <div
-        className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.05)_1px,transparent_0)] bg-[length:24px_24px]"
-        aria-hidden="true"
-      />
+    <section className="bg-[#0B0B10] text-white py-20 px-6 md:px-16">
+      <div className="max-w-6xl mx-auto text-center">
+        <h2 className="text-3xl md:text-4xl font-extrabold mb-3">
+          Why WingAgent?
+        </h2>
+        <p className="text-slate-400 text-lg mb-12">
+          Precision. Privacy. Performance.
+        </p>
 
-      <div className="mx-auto max-w-6xl text-center">
-        <h2 className="text-3xl font-bold text-white sm:text-4xl">Why Wing Agent?</h2>
-        <p className="mt-2 text-slate-400 text-base">Precision. Privacy. Performance.</p>
-      </div>
-
-      <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3 px-4 sm:px-6">
-        {features.map((f, i) => (
-          <div
-            key={i}
-            className="group relative rounded-2xl border border-transparent p-[2px] bg-gradient-to-r from-fuchsia-600 to-indigo-600 animate-borderGlow"
-          >
-            <div className="h-full rounded-2xl bg-slate-900/80 backdrop-blur-xl p-8 transition-transform duration-500 group-hover:-translate-y-1">
-              <div className="flex items-center justify-center h-14 w-14 rounded-xl bg-gradient-to-br from-fuchsia-500/30 to-indigo-500/30 mb-5 text-2xl">
-                {f.icon}
-              </div>
-              <h3 className="text-lg font-semibold text-white">{f.title}</h3>
-              <p className="mt-3 text-base text-slate-300 leading-relaxed">{f.text}</p>
+        <div className="grid md:grid-cols-6 gap-6">
+          {/* Card 1 */}
+          <div className="md:col-span-3 bg-[#151522] rounded-2xl p-8 flex flex-col justify-between">
+            <h3 className="text-xl font-semibold mb-2">
+              Human-real conversation style
+            </h3>
+            <p className="text-slate-400 text-sm">
+              WingAgent mirrors your humor, rhythm, and conversational
+              boundaries so every message feels authentically yours.
+            </p>
+            <div className="mt-6">
+              <Image
+                src="/images/conversation-style.png"
+                alt="Conversation illustration"
+                width={300}
+                height={150}
+                className="rounded-xl mx-auto"
+              />
             </div>
           </div>
-        ))}
+
+          {/* Card 2 */}
+          <div className="md:col-span-3 bg-[#151522] rounded-2xl p-8 flex flex-col justify-between">
+            <h3 className="text-xl font-semibold mb-2">
+              AI-driven match learning
+            </h3>
+            <p className="text-slate-400 text-sm">
+              Each chat trains the system to predict what works for you —
+              refining tone, timing, and reply depth automatically.
+            </p>
+            <div className="mt-6">
+              <Image
+                src="/images/ai-learning.png"
+                alt="AI learning visualization"
+                width={300}
+                height={150}
+                className="rounded-xl mx-auto"
+              />
+            </div>
+          </div>
+
+          {/* Card 3 */}
+          <div className="md:col-span-2 bg-[#151522] rounded-2xl p-8 flex flex-col justify-between">
+            <h3 className="text-xl font-semibold mb-2">
+              Unified multi-app automation
+            </h3>
+            <p className="text-slate-400 text-sm">
+              Operate Tinder, Bumble, and Hinge from one dashboard. One
+              interface, complete control.
+            </p>
+            <div className="mt-6">
+              <Image
+                src="/images/multi-app.png"
+                alt="Dashboard integration graphic"
+                width={250}
+                height={120}
+                className="rounded-xl mx-auto"
+              />
+            </div>
+          </div>
+
+          {/* Card 4 */}
+          <div className="md:col-span-2 bg-[#151522] rounded-2xl p-8 flex flex-col justify-between">
+            <h3 className="text-xl font-semibold mb-2">
+              Safety & privacy isolation
+            </h3>
+            <p className="text-slate-400 text-sm">
+              All tokens and credentials stay sandboxed with encryption. Your
+              personal data never leaves your private environment.
+            </p>
+            <div className="mt-6">
+              <Image
+                src="/images/privacy-lock.png"
+                alt="Privacy lock image"
+                width={250}
+                height={120}
+                className="rounded-xl mx-auto"
+              />
+            </div>
+          </div>
+
+          {/* Card 5 */}
+          <div className="md:col-span-2 bg-[#151522] rounded-2xl p-8 flex flex-col justify-between">
+            <h3 className="text-xl font-semibold mb-2">
+              Dedicated match funnel reporting
+            </h3>
+            <p className="text-slate-400 text-sm">
+              Track your conversion path visually — from swipes to hand-offs —
+              to understand what drives real connections.
+            </p>
+            <div className="mt-6">
+              <Image
+                src="/images/funnel-report.png"
+                alt="Analytics chart"
+                width={250}
+                height={120}
+                className="rounded-xl mx-auto"
+              />
+            </div>
+          </div>
+
+          {/* Card 6 */}
+          <div className="md:col-span-6 bg-[#151522] rounded-2xl p-8 flex flex-col justify-between">
+            <h3 className="text-xl font-semibold mb-2">Onboarding in minutes</h3>
+            <p className="text-slate-400 text-sm">
+              Answer a few smart prompts and you’re live in under five minutes.
+              No manuals. No friction.
+            </p>
+            <div className="mt-6">
+              <Image
+                src="/images/onboarding.png"
+                alt="Fast setup illustration"
+                width={500}
+                height={200}
+                className="rounded-xl mx-auto"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
