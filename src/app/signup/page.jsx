@@ -3,13 +3,9 @@ import { useEffect, useState } from "react";
 import Navbar from "../_components/MinimalNavbar";
 import Footer from "../_components/MinimalFooter";
 import Logo from "../_components/Logo";
-
 import { useSearchParams } from "next/navigation";
 
 export default function SignupPage() {
-
-  const params = useSearchParams();
-  const preselectedPlan = params.get("plan");
 
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
