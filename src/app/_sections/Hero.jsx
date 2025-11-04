@@ -38,8 +38,7 @@ export default function Hero() {
                 </h1>
 
                 <p className="mx-auto mt-5 max-w-2xl text-base text-slate-400 max-w-2xl mx-auto">
-                    WingAgent automates swiping, matching, and first messages — so you
-                    invest time only when the spark is real.
+                    Our Wing Agent automates swiping, matching, and first messages. You take over when there's real chemistry.
                 </p>
 
                 <div className="mt-10 flex items-center justify-center gap-4 w-full max-w-md mx-auto">

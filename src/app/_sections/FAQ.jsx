@@ -34,7 +34,10 @@ export default function FAQ() {
   return (
     <section id="faq" className="relative z-10 bg-gradient-to-b from-slate-950 to-slate-900 py-24 sm:py-28">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
-        <h2 className="text-3xl font-bold text-white sm:text-4xl">Some Common FAQ's</h2>
+        <p className="text-sm font-semibold text-indigo-400 mb-3 tracking-wide">
+          FAQ
+        </p>
+        <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-4">Some Common FAQ's</h2>
         <p className="mt-3 text-slate-400 text-base">
           Have questions? We've got answers. Everything you want to know before letting an AI handle your matches.
         </p>

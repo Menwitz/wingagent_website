@@ -11,13 +11,13 @@ export default function FinalCTA() {
 
       <div className="mx-auto max-w-3xl px-6">
         <h2 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-fuchsia-500 to-indigo-500 bg-clip-text text-transparent">
-          Ready to let WingAgent work for you?
+          Ready to meet better matches with less effort?
         </h2>
         <p className="mt-4 text-lg text-slate-300">
-          Join thousands using AI to reclaim their time and meet smarter.
+          Start now → create account, connect apps, set preferences, and let the agent get to work.
         </p>
         <p className="mt-4 text-lg text-slate-300">
-        Focus on what matters—real connection.
+          Focus on what matters—real connection.
         </p>
         <a
           href="#"

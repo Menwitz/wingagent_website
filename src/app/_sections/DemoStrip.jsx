@@ -12,7 +12,7 @@ export default function DemoStrip() {
     <section id="demo" className="relative py-20 bg-slate-950 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-fuchsia-600/10 via-indigo-600/10 to-transparent blur-3xl" />
       <div className="container mx-auto px-6 text-center relative z-10">
-        <h2 className="text-2xl font-semibold text-white mb-10">See WingAgent in motion.</h2>
+        <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-4">See WingAgent in motion.</h2>
         <div className="flex justify-center flex-wrap gap-6">
           {clips.map((c, i) => (
             <motion.div

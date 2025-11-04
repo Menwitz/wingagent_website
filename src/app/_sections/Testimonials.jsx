@@ -113,7 +113,8 @@ export default function Testimonials() {
 
   return (
     <section className="py-28 bg-slate-950 overflow-hidden" id="testimonials">
-      <h2 className="text-3xl font-semibold text-center mb-14">
+            <p className="text-sm font-semibold text-indigo-400 mb-3 tracking-wide text-center">TESTIMONIALS</p>
+      <h2 className="font-semibold text-center mb-14 text-4xl sm:text-5xl font-extrabold text-white mb-4">
         WingAgent in the wild
       </h2>
 

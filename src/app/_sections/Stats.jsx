@@ -50,7 +50,7 @@ export default function Stats() {
       className="relative z-10 py-24 sm:py-28"
     >
       <div className="mx-auto max-w-6xl text-center">
-        <h2 className="text-3xl font-bold text-white sm:text-4xl">
+        <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-4">
           Facts Don’t Lie
         </h2>
 

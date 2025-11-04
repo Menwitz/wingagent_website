@@ -60,7 +60,7 @@ export const metadata = {
         type: "website",
         images: [
             {
-                url: "/og-cover.jpg",
+                url: "https://wingagent.com/og-cover.svg",
                 width: 1200,
                 height: 630,
                 alt: "WingAgent AI preview",

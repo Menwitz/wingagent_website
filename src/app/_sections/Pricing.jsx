@@ -101,8 +101,8 @@ export default function Pricing() {
 
   return (
     <section id="pricing" className="py-24 bg-slate-950 text-center">
-      <p className="text-sm uppercase tracking-wider text-slate-400">Pricing</p>
-      <h2 className="text-4xl font-bold text-white mb-4">Flexible Plans for Everyone</h2>
+      <p className="text-sm font-semibold text-indigo-400 mb-3 tracking-wide">PRICING</p>
+      <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-4">Flexible Plans for Everyone</h2>
       <p className="mx-auto max-w-2xl text-base text-slate-300">Pay for time saved, not hype</p>
 
       {/* Billing toggle */}

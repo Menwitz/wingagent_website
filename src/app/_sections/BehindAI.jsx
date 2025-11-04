@@ -9,7 +9,7 @@ export default function BehindAI() {
     <section id="behindai" className="py-28 bg-gradient-to-b from-slate-900 to-slate-950 text-white">
       <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <h2 className="text-3xl font-bold mb-4">Behind the AI.</h2>
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-4">Behind the AI.</h2>
           <p className="text-slate-400 mb-8">
             Beneath every message lies a network of specialized models tuned for discretion,
             empathy, and efficiency. WingAgent never reuses data—each client runs on their own orbit.

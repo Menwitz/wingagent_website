@@ -6,7 +6,7 @@ export default function CTARepeat() {
     >
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-fuchsia-600/20 via-indigo-600/20 to-transparent blur-3xl" />
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+        <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-4">
           Ready to see how your WingAgent performs?
         </h2>
         <p className="text-slate-300 max-w-xl mx-auto mb-8">

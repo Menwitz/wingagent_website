@@ -6,8 +6,8 @@ export default function WhyWingAgent() {
   return (
     <section className="bg-[#0B0B10] text-white py-20 px-6 md:px-16">
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-extrabold mb-3">
-          Why WingAgent?
+        <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-4">
+          Why it works?
         </h2>
         <p className="text-slate-400 text-lg mb-12">
           Precision. Privacy. Performance.
