@@ -44,6 +44,9 @@ export const metadata = {
     creator: "Public Affairs Analytics LLC",
     publisher: "Public Affairs Analytics LLC",
     metadataBase: new URL("https://wingagent.ai"),
+    icons: {
+        icon: "/favicon.svg",
+    },
     alternates: {
         canonical: "https://wingagent.ai",
     },
