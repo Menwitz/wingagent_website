@@ -114,6 +114,7 @@ export default function RootLayout({ children }) {
             <body className="bg-slate-950 text-white antialiased">
                 <SmoothScroll />
                 {children}
+                <Analytics />
                 <CookieBanner />
             </body>
         </html>
