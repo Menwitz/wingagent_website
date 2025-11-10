@@ -1,4 +1,5 @@
 "use client";
+import ElectricBorder from "./ElectricBorder";
 
 // Stripe checkout now accepts plan + cycle ("monthly" | "yearly")
 async function handleCheckout(plan, cycle = "monthly") {
@@ -18,11 +19,11 @@ async function handleCheckout(plan, cycle = "monthly") {
 /**
  * Props:
  *  - data: {
- *      name, price, features[], highlight,            // existing
- *      code?, priceLabel?, custom?, ctaLabel?, ctaHref?, // new optional
- *      cycle?   // "monthly" | "yearly" (if parent passes it)
+ *      name, price, features[], highlight,
+ *      code?, priceLabel?, custom?, ctaLabel?, ctaHref?,
+ *      cycle?   // "monthly" | "yearly"
  *    }
- *  - yearly?: boolean  // still supported for backward compatibility
+ *  - yearly?: boolean
  */
 export default function PricingCard({ data = {}, yearly = false }) {
   const {
@@ -30,20 +31,16 @@ export default function PricingCard({ data = {}, yearly = false }) {
     price = 0,
     features = [],
     highlight = false,
-    code,                // e.g. "starter" | "pro" | "elite"
-    priceLabel,          // e.g. "Custom"
-    custom = false,      // true for Elite / Enterprise
-    ctaLabel,            // optional override
-    ctaHref,             // optional link for custom plans
-    cycle,               // "monthly" | "yearly" (optional from parent)
+    code,
+    priceLabel,
+    custom = false,
+    ctaLabel,
+    ctaHref,
+    cycle,
   } = data;
 
-  // Determine billing cycle from either prop or data.cycle
   const isYearly = typeof yearly === "boolean" ? yearly : cycle === "yearly";
 
-  // Compute display price:
-  // - If custom or priceLabel provided → show label (no /mo or /yr)
-  // - Else: monthly shows price; yearly shows price * 10 (2 months free)
   let numericPrice = price;
   if (!priceLabel && !custom) {
     numericPrice = isYearly ? price * 10 : price;
@@ -62,23 +59,22 @@ export default function PricingCard({ data = {}, yearly = false }) {
 
   const period = priceLabel || custom ? "" : isYearly ? "/yr" : "/mo";
 
-  // Unique plan code sent to checkout (fallback to sanitized name)
   const planCode =
     code || name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
 
-  // CTA logic
   const primaryCTA = custom ? ctaLabel || "Contact us" : ctaLabel || "Get Started";
   const primaryHref = custom ? ctaHref || "/contact" : null;
 
   return (
-    <div
-      className={`relative rounded-3xl p-[2px] ${
-        highlight
-          ? "bg-gradient-to-r from-fuchsia-600 to-indigo-600 animate-pulseSlow"
-          : "bg-gradient-to-r from-slate-700 to-slate-800"
-      }`}
+    <ElectricBorder
+      color={highlight ? "#f000b8" : "#7df9ff"}
+      speed={1}
+      chaos={0.5}
+      thickness={2}
+      style={{ borderRadius: 24 }}
     >
-      <div className="h-full rounded-3xl bg-slate-900/90 backdrop-blur-xl p-8 flex flex-col justify-between">
+      <div className="relative h-full rounded-3xl bg-slate-900/90 backdrop-blur-xl p-8 flex flex-col justify-between transition-transform hover:scale-[1.02] duration-300">
+        {/* Header */}
         <div>
           <h3 className="text-xl font-semibold text-white mb-2">{name}</h3>
 
@@ -89,7 +85,6 @@ export default function PricingCard({ data = {}, yearly = false }) {
             {period && <p className="text-sm text-slate-400">{period}</p>}
           </div>
 
-          {/* Sub-label for yearly promo */}
           {!custom && !priceLabel && isYearly && (
             <div className="mt-2 inline-flex items-center gap-2 rounded-full border border-fuchsia-500/30 px-2 py-0.5 text-[11px] text-fuchsia-300">
               2 months free
@@ -149,6 +144,6 @@ export default function PricingCard({ data = {}, yearly = false }) {
           </button>
         )}
       </div>
-    </div>
+    </ElectricBorder>
   );
 }
